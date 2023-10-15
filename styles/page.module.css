@@ -1,0 +1,80 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem;
+  min-height: 100vh;
+}
+
+.githubContribution {
+  text-align: center;
+}
+
+.widgetDiv {
+  margin-bottom: 40px;
+}
+
+/* Contribute Calender */
+
+.contributeCalendarGrid {
+  position: relative;
+  overflow: hidden;
+  width: max-content;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  border-collapse: separate;
+  border-spacing: 3px;
+}
+
+.contributeCalendarLabel {
+  position: relative;
+  padding: 0.125em 0.5em 0.125em 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--primary-text-color);
+  text-align: left;
+}
+
+.contributeCalendarDay,
+.contributeCalendarDay[data-level="0"] {
+  width: 11px;
+  fill: var(--color-calendar-graph-day-bg);
+  shape-rendering: geometricPrecision;
+  background-color: var(--color-calendar-graph-day-bg);
+  border-radius: 2px;
+  outline: 1px solid var(--color-calendar-graph-day-border);
+  outline-offset: -1px;
+}
+
+.contributeCalendarDay[data-level="1"] {
+  fill: var(--color-calendar-graph-day-L1-bg);
+  background-color: var(--color-calendar-graph-day-L1-bg);
+  outline: 1px solid var(--color-calendar-graph-day-L1-border);
+}
+
+.contributeCalendarDay[data-level="2"] {
+  fill: var(--color-calendar-graph-day-L2-bg);
+  background-color: var(--color-calendar-graph-day-L2-bg);
+  outline: 1px solid var(--color-calendar-graph-day-L2-border);
+}
+
+.contributeCalendarDay[data-level="3"] {
+  fill: var(--color-calendar-graph-day-L3-bg);
+  background-color: var(--color-calendar-graph-day-L3-bg);
+  outline: 1px solid var(--color-calendar-graph-day-L3-border);
+}
+
+.contributeCalendarDay[data-level="4"] {
+  fill: var(--color-calendar-graph-day-L4-bg);
+  background-color: var(--color-calendar-graph-day-L4-bg);
+  outline: 1px solid var(--color-calendar-graph-day-L4-border);
+}
+
+/* Contribute Weekly Graph */
+
+.githubContributeWeekly {
+  background-color: rgb(63, 67, 69);
+  padding: 0 10px;
+  border-radius: 0.25rem;
+}
