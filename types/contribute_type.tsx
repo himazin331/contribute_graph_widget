@@ -1,13 +1,13 @@
-interface ContributeProps {
+export interface ContributeProps {
   contributeData: any;
-}
+};
 
-interface DayContributions {
+export interface DayContributions {
   date: Date;
   contribute: number;
-}
+};
 
-interface MonthsLabel {
+export interface MonthsLabel {
   month: string;
   colSpan: number;
-}
+};
