@@ -20,17 +20,16 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
 }
 
 body {
-  color: #ffffff;
-  background: #333333;
+  color: #ffffff !important;
+  background: #333333 !important;
 }
 
 a {
-  color: #39d353;
+  color: #39d353 !important;
 }
 a:hover {
-  opacity: 0.5;
+  opacity: 0.5 !important;
 }

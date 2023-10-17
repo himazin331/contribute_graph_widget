@@ -31,6 +31,8 @@ const Home = () => {
     <div className={styles.main}>
       <h1>Contribute Calender and Weekly-Graph Widget Sample</h1>
 
+      <h2>Show: himazin331</h2>
+
       <div className={styles.githubContribution} id="github_contributors">
         {contributeLoading && <span>Loading...</span>}
         {contributeData &&

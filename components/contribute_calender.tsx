@@ -54,7 +54,7 @@ const ContributeCalendar: React.FC<ContributeProps> = ({ contributeData }): Reac
 
   return (
     <>
-      <div style={{ maxWidth: "100%", overflowY: "hidden", overflowX: "auto" }}>
+      <div className={style.contributeCalendar}>
         <p style={{ margin: 0 }}>{contributeData["totalContributions"]} contributions in the last year</p>
         <table className={style.contributeCalendarGrid} style={{ textAlign: "center" }}>
           <thead>

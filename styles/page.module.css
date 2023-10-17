@@ -17,6 +17,14 @@
 
 /* Contribute Calender */
 
+.contributeCalendar {
+  max-width: 100%;
+  overflow-y: hidden;
+  overflow-x: auto;
+  background-color: rgb(63, 67, 69);
+  padding: 0 10px;
+}
+
 .contributeCalendarGrid {
   position: relative;
   overflow: hidden;
