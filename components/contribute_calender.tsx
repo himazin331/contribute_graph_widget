@@ -1,15 +1,15 @@
-/* コントリビューションカレンダー */
+/* Contribute Calender */
 
-import style from "@/styles/page.module.css";
-import { ContributeProps, DayContributions, MonthsLabel } from "@/types/contribute_type";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { ContributeProps, DayContributions, MonthsLabel } from "@/types/contribute_type";
+import style from "@/styles/page.module.css";
 
 const ContributeCalendar: React.FC<ContributeProps> = ({ contributeData }): React.ReactElement => {
   const daysList: Array<string> = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const monthsList: Array<string> = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-  let dayData: Array<Array<DayContributions>> = [];  // 日毎データ
-  let monthsLabels: Array<MonthsLabel> = [];       // 月ラベル
+  let dayData: Array<Array<DayContributions>> = [];
+  let monthLabels: Array<MonthsLabel> = [];
   for (let i = 0; i < contributeData["weeks"].length; i++) {
     const weekly = contributeData["weeks"][i];
     const weeklyDays = weekly["contributionDays"];
@@ -25,31 +25,31 @@ const ContributeCalendar: React.FC<ContributeProps> = ({ contributeData }): Reac
     dayData.push(dayContributions);
   }
 
-  // 月ラベル作成
+  // Create mounth labels
   let firstDayMonth: number = dayData[0][0]["date"].getMonth();
-  let monthsLabelColSpan: number = 0;
+  let monthLabelColSpan: number = 0;
   for (let i = 0; i < dayData.length; i++) {
     let dayMonth: number = dayData[i][0]["date"].getMonth();
     if (firstDayMonth !== dayMonth) {
-      monthsLabels.push({
+      monthLabels.push({
         "month": monthsList[firstDayMonth],
-        "colSpan": Math.ceil(monthsLabelColSpan / 7)
+        "colSpan": Math.ceil(monthLabelColSpan / 7)
       });
 
       firstDayMonth = dayMonth;
-      monthsLabelColSpan = 0;
+      monthLabelColSpan = 0;
     }
 
     for (let j = 0; j < dayData[i].length; j++) {
-      if (firstDayMonth === dayData[i][j]["date"].getMonth()) monthsLabelColSpan += 1;
+      if (firstDayMonth === dayData[i][j]["date"].getMonth()) monthLabelColSpan += 1;
     }
   }
-  monthsLabels.push({
+  monthLabels.push({
     "month": monthsList[firstDayMonth],
-    "colSpan": Math.ceil(monthsLabelColSpan / 7)
+    "colSpan": Math.ceil(monthLabelColSpan / 7)
   });
 
-  // 行・列の入れ替え
+  // row/column swapping
   dayData = dayData[0].map((_, index: number) => dayData.map(row => row[index]));
 
   return (
@@ -60,7 +60,7 @@ const ContributeCalendar: React.FC<ContributeProps> = ({ contributeData }): Reac
           <thead>
             <tr style={{ height: 15 }}>
               <td style={{ width: 29 }} />
-              {monthsLabels.map((monthsLabel: MonthsLabel, idx: number) => (
+              {monthLabels.map((monthsLabel: MonthsLabel, idx: number) => (
                 <td key={idx} className={style.contributeCalendarLabel} colSpan={monthsLabel["colSpan"]}>
                   <span style={{ position: "absolute", top: 0 }}>{monthsLabel["month"]}</span>
                 </td>

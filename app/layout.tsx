@@ -1,9 +1,9 @@
-import "@/styles/globals.css"
 import type { Metadata } from "next"
+import "@/styles/globals.css"
 
 export const metadata: Metadata = {
-  title: "Contribute Widget Sample",
-  description: "Contribute Calender and Weekly Graph widget sample",
+  title: "Contribute Widget Demo",
+  description: "Contribute Calender and Weekly Graph widget demo",
 };
 
 const RootLayout = ({children}: {children: React.ReactNode}) => {

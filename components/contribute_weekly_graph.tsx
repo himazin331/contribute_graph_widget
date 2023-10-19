@@ -1,7 +1,5 @@
-/* コントリビューション週グラフ */
+/* Contribute Weekly Graph */
 
-import style from "@/styles/page.module.css";
-import { ContributeProps, DayContributions } from "@/types/contribute_type";
 import {
   BarElement,
   CategoryScale,
@@ -11,6 +9,8 @@ import {
   Title
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { ContributeProps, DayContributions } from "@/types/contribute_type";
+import style from "@/styles/page.module.css";
 
 ChartJS.register(
   CategoryScale,
@@ -21,9 +21,9 @@ ChartJS.register(
 );
 
 const ContributeWeeklyGraph: React.FC<ContributeProps> = ({ contributeData }): React.ReactElement => {
-  let weeklyData: Array<number> = [];             // 週毎データ
-  let weeklyContLabels: Array<string | Array<string>> = [];  // 週ラベル
-  let backgroundColors: Array<string> = [];       // 背景色リスト
+  let weeklyData: Array<number> = [];
+  let weeklyContLabels: Array<string | Array<string>> = [];
+  let backgroundColors: Array<string> = [];
 
   let prevYear: number = 0;
   for (let i = 0; i < contributeData["weeks"].length; i++) {
@@ -44,17 +44,17 @@ const ContributeWeeklyGraph: React.FC<ContributeProps> = ({ contributeData }): R
     }
     weeklyData.push(weeklyContributions);
 
-    // 週ラベル作成
+    // Create weekly labels
     const firstDay: Date = new Date(weeklyDays[0]["date"]);
     const firstDayYear: number = firstDay.getFullYear();
     const lastDay: Date = new Date(weeklyDays[weeklyDays.length - 1]["date"]);
 
     let weeklyContLabel: string | Array<string> = `${firstDay.getMonth() + 1}/${firstDay.getDate()}~${lastDay.getMonth() + 1}/${lastDay.getDate()}`;
-    // idx=0か前年と異なる年であれば年を追加
+    // idx=0 or add year if different from previous year
     if (i === 0 || prevYear !== firstDayYear) weeklyContLabel = [String(firstDayYear), weeklyContLabel];
     weeklyContLabels.push(weeklyContLabel);
 
-    // 背景色セット
+    // Set background-color
     if (weeklyContributions >= 15) {
       backgroundColors.push("#39d353");
     } else if (weeklyContributions >= 10) {
@@ -68,7 +68,7 @@ const ContributeWeeklyGraph: React.FC<ContributeProps> = ({ contributeData }): R
     prevYear = lastDay.getFullYear();
   }
 
-  // グラフ設定
+  // Graph settings
   let dataMax: number = Math.max(...weeklyData);
   let remainder: number = dataMax % 5;
   if (remainder !== 0) dataMax += remainder;
