@@ -1,8 +1,17 @@
 import { NextResponse } from "next/server";
 import fetch from "node-fetch";
 
-export async function GET(request: Request) {
-  const user_id: string = "himazin331"
+export async function POST(request: Request) {
+  const reader = request.body?.getReader();
+  async function readRequestBody() {
+    const { value, done } = await reader!.read();
+    if (done) return;
+    return value;
+  }
+  const textDecoder = new TextDecoder("utf-8");
+  const decoded_reqbody = textDecoder.decode(await readRequestBody());
+  const reqbody = JSON.parse(decoded_reqbody);
+  const user_id = reqbody["userId"] === "" ? "himazin331" : reqbody["userId"];
   const req_headers = {
     "Authorization": `bearer ${process.env.GITHUB_TOKEN}`,
   };

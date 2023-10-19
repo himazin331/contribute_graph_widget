@@ -12,9 +12,9 @@
 }
 
 * {
-  box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html,
@@ -23,8 +23,8 @@ body {
 }
 
 body {
-  color: #ffffff !important;
-  background: #333333 !important;
+  background: rgb(38, 42, 43) !important;
+  color: rgb(232, 230, 227) !important;
 }
 
 a {
@@ -32,4 +32,8 @@ a {
 }
 a:hover {
   opacity: 0.5 !important;
+}
+
+p {
+  margin: 0 !important;
 }
