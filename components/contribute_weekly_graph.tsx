@@ -71,7 +71,6 @@ const ContributeWeeklyGraph: React.FC<ContributeProps> = ({ contributeData }): R
     } else {
       backgroundColors.push("#0e4429");
     }
-
   }
 
   // Graph settings

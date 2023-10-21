@@ -2,7 +2,6 @@
 
 import { FC, useEffect, useState, SyntheticEvent, useRef } from "react";
 import { useSearchParams } from "next/navigation";
-import Container from "react-bootstrap/Container";
 import ContributeCalendar from "@/components/contribute_calender";
 import ContributeWeeklyGraph from "@/components/contribute_weekly_graph";
 import styles from "@/styles/page.module.css";
