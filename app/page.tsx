@@ -2,6 +2,7 @@
 
 import { FC, useEffect, useState, SyntheticEvent, useRef } from "react";
 import { useSearchParams } from "next/navigation";
+import Container from "react-bootstrap/Container";
 import ContributeCalendar from "@/components/contribute_calender";
 import ContributeWeeklyGraph from "@/components/contribute_weekly_graph";
 import styles from "@/styles/page.module.css";
@@ -44,6 +45,7 @@ const Home: FC = () => {
     const userId = searchParams.get("userId") || "himazin331"
     const res = fetchGetContributions(userId);
     res.then((r) => {
+      if (r["data"]["user"] === null) return; // not found user
       setContributeData(r["data"]["user"]["contributionsCollection"]["contributionCalendar"]);
       setContributeLoading(false);
     }).catch((error) => {
@@ -62,8 +64,11 @@ const Home: FC = () => {
 
   return (
     <div className={styles.main}>
-      <div className={styles.contentArea}>
+      <div className={styles.contentArea} style={{marginTop:30, marginBottom: 30}}>
         <h1>Contribute Calender and Weekly-Graph Widget Demo</h1>
+      </div>
+
+      <div className={styles.contentArea} style={{marginTop:30, marginBottom: 30}}>
         <h2>Show: {searchParams.get("userId") || "himazin331"} </h2>
       </div>
 
@@ -74,7 +79,7 @@ const Home: FC = () => {
         }
       </div>
 
-      <div className={styles.contentArea}>
+      <div className={styles.contentArea} style={{marginBottom: 30}}>
         <form>
           <p>Enter a GitHub User-ID to see the user&apos;s Contributions</p>
           <input ref={ref} type="text" placeholder="himazin331"/>
@@ -82,7 +87,7 @@ const Home: FC = () => {
         </form>
       </div>
 
-      <div className={styles.contentArea}>
+      <div className={styles.contentArea} style={{marginBottom: 30, overflowWrap: "break-word"}}>
         <p>GitHub repo: <a href="https://github.com/himazin331/contribute_graph_widget" target="_blank" rel="noopener noreferrer">https://github.com/himazin331/contribute_graph_widget</a></p>
         <p>Author: <a href="https://github.com/himazin331" target="_blank" rel="noopener noreferrer">himazin331</a></p>
       </div>
