@@ -58,7 +58,6 @@ const ContributeWeeklyGraph: React.FC<ContributeProps> = ({ contributeData }): R
         prevYear = lastDay.getFullYear();
       }
     }
-    console.log(weeklyContLabel)
     weeklyContLabels.push(weeklyContLabel);
 
     // Set background-color
