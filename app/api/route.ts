@@ -11,31 +11,31 @@ export async function POST(request: Request) {
   const textDecoder = new TextDecoder("utf-8");
   const decoded_reqbody = textDecoder.decode(await readRequestBody());
   const reqbody = JSON.parse(decoded_reqbody);
+
   const user_id = reqbody["userId"] === "" ? "himazin331" : reqbody["userId"];
   const req_headers = {
     "Authorization": `bearer ${process.env.GITHUB_TOKEN}`,
   };
+  const query = `query getContribute($user_id: String!) {
+                  user(login: $user_id) {
+                    contributionsCollection {
+                      contributionCalendar {
+                        totalContributions
+                        weeks {
+                          contributionDays {
+                            color
+                            contributionCount
+                            date
+                            weekday
+                          }
+                          firstDay
+                        }
+                      }
+                    }
+                  }
+                }`;
   const req_body = JSON.stringify({
-    query: `
-      query {
-        user(login: "` + user_id + `") {
-          contributionsCollection {
-            contributionCalendar {
-              totalContributions
-              weeks {
-                contributionDays {
-                  color
-                  contributionCount
-                  date
-                  weekday
-                }
-                firstDay
-              }
-            }
-          }
-        }
-      }
-    `,
+    query, variables: { user_id },
   });
 
   try {
