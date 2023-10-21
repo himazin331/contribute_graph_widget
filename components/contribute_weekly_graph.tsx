@@ -50,8 +50,15 @@ const ContributeWeeklyGraph: React.FC<ContributeProps> = ({ contributeData }): R
     const lastDay: Date = new Date(weeklyDays[weeklyDays.length - 1]["date"]);
 
     let weeklyContLabel: string | Array<string> = `${firstDay.getMonth() + 1}/${firstDay.getDate()}~${lastDay.getMonth() + 1}/${lastDay.getDate()}`;
-    // idx=0 or add year if different from previous year
-    if (i === 0 || prevYear !== firstDayYear) weeklyContLabel = [String(firstDayYear), weeklyContLabel];
+    // Add year if different from first label and previous year
+    if (weeklyContLabels.length === 0 || prevYear !== firstDayYear) {
+      // Tips: Week labels appear every three weeks.
+      if (weeklyContLabels.length % 3 === 0) {
+        weeklyContLabel = [String(firstDayYear), weeklyContLabel];
+        prevYear = lastDay.getFullYear();
+      }
+    }
+    console.log(weeklyContLabel)
     weeklyContLabels.push(weeklyContLabel);
 
     // Set background-color
@@ -65,7 +72,6 @@ const ContributeWeeklyGraph: React.FC<ContributeProps> = ({ contributeData }): R
       backgroundColors.push("#0e4429");
     }
 
-    prevYear = lastDay.getFullYear();
   }
 
   // Graph settings
